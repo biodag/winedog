@@ -15,8 +15,7 @@ int main(void) {
 		uint8_t byte;
 		while (byte = scan()) {
 			if (byte == 0x1c) {
-				if (strlen(buff) > 0 && strcmp(buff, "exit") == 0)
-					printf("\nGoodbye!");
+				if (strlen(buff) > 0 && strcmp(buff, "exit") == 0) printf("\nGoodbye!");
 				printprompt();
 				memset(&buff[0], 0, sizeof(buff));
 				break;
