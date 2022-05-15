@@ -11,9 +11,6 @@ C_FILES=./libc/string/memcmp.c \
 	./libc/string/strstr.c \
 	./libc/string/strutil.c \
 	./libc/string/ctos.c \
-	./libc/string/memmove.c \
-	./libc/stdlib/abort.c \
-	./libc/stdio/puts.c \
 	./kernel/tty.c \
 	./kernel/io.c \
 	./kernel/kernel.c
@@ -28,14 +25,12 @@ all: finale
 
 $(TARGET): $(OBJS)
 	$(shell nasm -f elf start.asm -o start.o)
-	$(shell i586-elf-gcc -m32 -o kernel.o -c kernel.c)
-	$(CC) -m32 -nostdlib -nodefaultlibs start.o $? -T linker.ld -o $(TARGET)
+	$(CC) -m32 -nostdlib -nodefaultlibs -lgcc start.o $? -T linker.ld -o $(TARGET)
 
 finale:
 	$(shell cp $(TARGET) ./iso/boot/$(TARGET))
 	$(shell grub-mkrescue iso --output=$(TARGET).iso)
 
-
 clean:
-	rm -f *.o $(TARGET)
+	rm -f *.o $(TARGET) $(TARGET).iso
 	find . -name \*.o | xargs --no-run-if-empty rm

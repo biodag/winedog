@@ -8,13 +8,11 @@ uint8_t inb(uint16_t port)
     return ret;
 }
 
-void outb(uint16_t port, uint8_t val)
-{
+void outb(uint16_t port, uint8_t val) {
     __asm__ __volatile__("outb %0, %1" : : "a" (val), "Nd" (port));
 }
 
-uint8_t scan(void)
-{
+uint8_t scan(void) {
     unsigned char brk;
     static uint8_t key = 0;
     uint8_t scan = inb(0x60);
@@ -28,8 +26,7 @@ uint8_t scan(void)
 	return 0;
 }
 
-void move_cursor(int row, int col)
-{
+void move_cursor(int row, int col) {
     unsigned short pos = (row * 80) + col;
     outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
     outb(FB_DATA_PORT, (unsigned char)(pos & 0xFF));
@@ -37,8 +34,7 @@ void move_cursor(int row, int col)
     outb(FB_DATA_PORT, (unsigned char)((pos >> 8) & 0xFF));
 }
 
-void printprompt(void)
-{
+void printprompt(void) {
     printf("\n$> ");
     move_cursor(get_terminal_row(), get_terminal_col());
 }
