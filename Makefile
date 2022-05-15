@@ -11,9 +11,12 @@ C_FILES=./libc/string/memcmp.c \
 	./libc/string/strstr.c \
 	./libc/string/strutil.c \
 	./libc/string/ctos.c \
+	./libc/string/memmove.c \
+	./libc/stdlib/abort.c \
+	./libc/stdio/puts.c \
 	./kernel/tty.c \
 	./kernel/io.c \
-	./kernel.c
+	./kernel/kernel.c
 OBJS=$(C_FILES:.c=.o)
 
 all compile: $(TARGET)
