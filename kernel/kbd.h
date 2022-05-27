@@ -107,4 +107,3 @@ static char ctlmap[256] =
   [0x97] KEY_HOME,  [0xCF] KEY_END,
   [0xD2] KEY_INS,   [0xD3] KEY_DEL
 };
-

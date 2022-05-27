@@ -1,4 +1,4 @@
-bits 32
+[BITS 32]
 global _start
 extern kernel_early
 extern main
